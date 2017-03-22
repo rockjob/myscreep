@@ -30,7 +30,7 @@ module.exports = {
         //check if has enough resources
         if(!Game.getObjectById(creep.memory.target)){
           updateTarget(creep);
-        } else if(Game.getObjectById(creep.memory.target).store[RESOURCE_ENERGY] < creep.carryCapacity){
+        } else if((Game.getObjectById(creep.memory.target).store[RESOURCE_ENERGY] < creep.carryCapacity) || (Game.spawns.Spawn1.memory.targetstorage != creep.memory.target)){
           updateTarget(creep);
         } else if(creep.withdraw(Game.getObjectById(creep.memory.target), RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
           creep.moveTo(Game.getObjectById(creep.memory.target));
@@ -55,8 +55,14 @@ module.exports = {
   }
 }
 function updateTarget(creep){
+  //var target = creep.pos.findClosestByPath(_.filter(Game.spawns.Spawn1.room.find(FIND_STRUCTURES),function(x){return x.structureType== STRUCTURE_CONTAINER && x.store[RESOURCE_ENERGY] >  creep.carryCapacity} ));
+
+  if(Game.spawns.Spawn1.memory.targetstorage){
+  creep.memory.target = Game.spawns.Spawn1.memory.targetstorage;
+} else {
   var target = creep.pos.findClosestByPath(_.filter(Game.spawns.Spawn1.room.find(FIND_STRUCTURES),function(x){return x.structureType== STRUCTURE_CONTAINER && x.store[RESOURCE_ENERGY] >  creep.carryCapacity} ));
   if(target){
-  creep.memory.target = target.id;
+    creep.memory.target = target.id;
+  }
 }
 }

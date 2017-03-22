@@ -7,6 +7,7 @@
  * mod.thing == 'a thing'; // true
  */
 var creep;
+var myTargetStorage;
 module.exports = {
 run: function(creep){
 
@@ -20,14 +21,14 @@ run: function(creep){
       creep.memory.originalrole = creep.memory.role;
       creep.memory.role = "B";
     }*/
-    dropOffResource(creep);
+    dropOffResource(creep,myTargetStorage);
 
  }else{
 
-    var myTargetStorage =Game.getObjectById(Game.spawns.Spawn1.memory.targetstorage.id);
+    myTargetStorage =Game.getObjectById(Game.spawns.Spawn1.memory.targetstorage);
      //var target = creep.room.find(FIND_SOURCES);
      //var target = creep.pos.findClosestByPath(FIND_DROPPED_ENERGY);
-     var target = creep.pos.findClosestByPath(_.filter(Game.spawns.Spawn1.room.find(FIND_STRUCTURES),function(x){return x.structureType == STRUCTURE_CONTAINER && _.sum(x.store) != 0 && x.id != myTargetStorage.id} ));
+     var target = creep.pos.findClosestByPath(_.filter(Game.spawns.Spawn1.room.find(FIND_STRUCTURES),function(x){return x.structureType == STRUCTURE_CONTAINER && _.sum(x.store) > 0 && x.id != myTargetStorage} ));
   //  console.log(_.filter(creep.pos.findInRange(FIND_DROPPED_ENERGY,100), function(drop){return drop.energy > 50})[0].energy);
   //  console.log(creep.pickup(target));
   //console.log(target);
@@ -39,13 +40,13 @@ run: function(creep){
 }
 
 };
-function dropOffResource(creep){
-  var myTargetStorage =Game.getObjectById(Game.spawns.Spawn1.memory.targetstorage.id);
-  if(_.sum(myTargetStorage.store) < myTargetStorage.storeCapacity){
-    if(creep.transfer(myTargetStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
-        creep.moveTo(myTargetStorage);
+function dropOffResource(creep,myTargetStorage){
+
+  if(_.sum(Game.getObjectById(myTargetStorage).store) < Game.getObjectById(myTargetStorage).storeCapacity){
+    if(creep.transfer(Game.getObjectById(myTargetStorage), RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
+        creep.moveTo(Game.getObjectById(myTargetStorage));
     } else {
-      creep.moveTo(myTargetStorage);
+      creep.moveTo(Game.getObjectById(myTargetStorage));
     }
 
   }

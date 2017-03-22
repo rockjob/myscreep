@@ -51,7 +51,8 @@ if(!creep.memory.dropOffTarget){
 }  if(!Game.getObjectById(creep.memory.dropOffTarget)){
   updateDropOffTarget(creep);
 }
-if( _.sum(Game.getObjectById(creep.memory.dropOffTarget.store) == Game.getObjectById(creep.memory.dropOffTarget.storeCapacity))){
+if( _.sum(Game.getObjectById(creep.memory.dropOffTarget).store) == Game.getObjectById(creep.memory.dropOffTarget.storeCapacity)){
+console.log("its full");
   updateDropOffTarget(creep);
 }
 
