@@ -14,7 +14,7 @@ if(creep.memory.target == undefined|| Game.getObjectById(creep.memory.target).en
      //creep.memory.target = _.filter(creep.room.find(FIND_SOURCES), function(x){return x.energy > 0 })[0].id;
      if(creep.pos.findClosestByPath(_.filter(creep.room.find(FIND_SOURCES), function(x){return x.energy > 0 }))){
      creep.memory.target = creep.pos.findClosestByPath(_.filter(creep.room.find(FIND_SOURCES), function(x){return x.energy > 0 })).id;
-   }
+   } else return 0;
 }
 
  if (creep.harvest(Game.getObjectById(creep.memory.target)) == ERR_NOT_IN_RANGE){
