@@ -1,5 +1,6 @@
 /*
 
+-Create order of spawning to maximize economy set speed
 -Create dynamic spawner based that sees how much energy is avaliable.
 -Minimise use of "find" methods: Store targets in creep memory
 

@@ -10,7 +10,8 @@ var creep;
 module.exports = {
 run: function(creep){
 //creep.memory.role = "R";
-  if(creep.carry.energy != 0){
+  if(creep.carry.energy == creep.carryCapacity){
+
     // console.log(creep.transfer(Game.spawns.Spawn1, RESOURCE_ENERGY));
     /* if(creep.transfer(Game.spawns.Spawn1, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
          creep.moveTo(Game.spawns.Spawn1);
@@ -39,14 +40,24 @@ run: function(creep){
 
 }
 
-};
+}
 function dropOffResource(creep){
+
   if(Game.spawns.Spawn1.energy == Game.spawns.Spawn1.energyCapacity){ //Full - Look for storage container
 //console.log("It's full!");
 //console.log(creep.transfer(_.filter(Game.spawns.Spawn1.room.find(FIND_STRUCTURES),function(x){return x.structureType= "STRUCTURE_CONTAINER" && _.sum(x.store) < x.storeCapacity} ), RESOURCE_ENERGY))
-var target = creep.pos.findClosestByPath(_.filter(Game.spawns.Spawn1.room.find(FIND_STRUCTURES),function(x){return (x.structureType == STRUCTURE_EXTENSION && x.energy < x.energyCapacity) || (x.structureType == STRUCTURE_CONTAINER && _.sum(x.store) < x.storeCapacity) } ));
-    if(creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
-        creep.moveTo(target);
+if(!creep.memory.dropOffTarget){
+  updateDropOffTarget(creep);
+}  if(!Game.getObjectById(creep.memory.dropOffTarget)){
+  updateDropOffTarget(creep);
+}
+if( _.sum(Game.getObjectById(creep.memory.dropOffTarget.store) == Game.getObjectById(creep.memory.dropOffTarget.storeCapacity))){
+  updateDropOffTarget(creep);
+}
+
+
+    if(creep.transfer(Game.getObjectById(creep.memory.dropOffTarget), RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
+        creep.moveTo(Game.getObjectById(creep.memory.dropOffTarget));
     } else {
       creep.moveTo(Game.spawns.Spawn1);
     }
@@ -58,4 +69,7 @@ var target = creep.pos.findClosestByPath(_.filter(Game.spawns.Spawn1.room.find(F
     }
 
   }
+}
+function updateDropOffTarget(creep){
+  creep.memory.dropOffTarget = creep.pos.findClosestByPath(_.filter(Game.spawns.Spawn1.room.find(FIND_STRUCTURES),function(x){return (x.structureType == STRUCTURE_EXTENSION && x.energy < x.energyCapacity) || (x.structureType == STRUCTURE_CONTAINER && _.sum(x.store) < x.storeCapacity) } )).id;
 }

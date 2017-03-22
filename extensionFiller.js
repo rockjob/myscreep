@@ -12,7 +12,7 @@ module.exports = {
   run: function(creep){
     if(creep.carry.energy > 0){
 
-      var target = creep.pos.findClosestByPath(_.filter(Game.spawns.Spawn1.room.find(FIND_MY_STRUCTURES),function(x){return ((x.structureType== STRUCTURE_EXTENSION || x.structureType== STRUCTURE_SPAWN) && x.energy < x.energyCapacity)} ));
+      var target = creep.pos.findClosestByPath(_.filter(Game.spawns.Spawn1.room.find(FIND_MY_STRUCTURES),function(x){return ((x.structureType== STRUCTURE_EXTENSION ) && x.energy < x.energyCapacity)} ));
       //console.log(creep.transfer(_.filter(Game.spawns.Spawn1.room.find(FIND_MY_STRUCTURES),function(x){return x.structureType= "STRUCTURE_EXTENSION" && x.energy < x.energyCapacity} ), RESOURCE_ENERGY));
       if(target){
         if(creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
@@ -36,11 +36,17 @@ module.exports = {
       if(creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
         creep.moveTo(target);
       }
-    } else {
-      /*if(creep.pickup(creep.pos.findClosestByPath(creep.room.find(FIND_DROPPED_ENERGY)))== ERR_NOT_IN_RANGE){
-                   creep.moveTo(creep.pos.findClosestByPath(creep.room.find(FIND_DROPPED_ENERGY)));
-       }*/
-    }
+    } else{
+        if(Game.spawns.Spawn1.energy == Game.spawns.Spawn1.energyCapacity){
+          if(creep.withdraw(Game.spawns.Spawn1, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
+            creep.moveTo(Game.spawns.Spawn1);
+          }
+        }
+      } //else {
+        /*if(creep.pickup(creep.pos.findClosestByPath(creep.room.find(FIND_DROPPED_ENERGY)))== ERR_NOT_IN_RANGE){
+        creep.moveTo(creep.pos.findClosestByPath(creep.room.find(FIND_DROPPED_ENERGY)));
+      }*/
+  //  }
   } else {
     creep.memory.role = creep.memory.originalrole;
   }
