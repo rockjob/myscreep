@@ -45,7 +45,7 @@ function spawnRoom(room){
 if(_.size(_.filter(Game.creeps, function(creep){return creep.memory.originalrole == 'EF'})) < 1){
 	Game.spawns.Spawn1.createCreep([CARRY,WORK,MOVE],null, { originalrole: "EF", role: "EF"} );
 }
-	if(_.size(Game.creeps) < 25 ){
+	if(_.size(Game.creeps) < 35 ){
 		//Spawn creeps if low
 
 
@@ -59,7 +59,7 @@ if(_.size(_.filter(Game.creeps, function(creep){return creep.memory.originalrole
 			//Game.spawns.Spawn1.createCreep([WORK,WORK,MOVE],null, { originalrole: "SM", role:"SM"} );
 		} else if(_.size(_.filter(Game.creeps, function(creep){return creep.memory.originalrole == 'T'})) < 2 && (Game.spawns.Spawn1.room.energyAvailable == Game.spawns.Spawn1.room.energyCapacityAvailable)|| _.size(_.filter(Game.creeps, function(creep){return creep.memory.originalrole == 'T'})) == 0 ){
 			buildCreep([MOVE,CARRY,CARRY,MOVE,CARRY,CARRY,MOVE,CARRY,CARRY],{ originalrole: "T", role:"T"} );
-		} else if(_.size(_.filter(Game.creeps, function(creep){return creep.memory.originalrole == 'TS'})) < 1&& Game.spawns.Spawn1.room.energyAvailable == Game.spawns.Spawn1.room.energyCapacityAvailable){
+		} else if(_.size(_.filter(Game.creeps, function(creep){return creep.memory.originalrole == 'TS'})) < 3&& Game.spawns.Spawn1.room.energyAvailable == Game.spawns.Spawn1.room.energyCapacityAvailable){
 			buildCreep([MOVE,CARRY,CARRY,MOVE,CARRY,CARRY,MOVE,CARRY,CARRY],{ originalrole: "TS", role:"TS"} );
 			//  Game.spawns.Spawn1.createCreep([CARRY,CARRY,MOVE],null, { originalrole: "T", role:"T"} );
 		} else if(_.size(_.filter(Game.creeps, function(creep){return creep.memory.originalrole == 'U'})) < 10&& Game.spawns.Spawn1.room.energyAvailable == Game.spawns.Spawn1.room.energyCapacityAvailable){

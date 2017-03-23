@@ -21,7 +21,7 @@ if(loopcount%10 == 0){
   if(!Memory.roomList){
     Memory.roomList = [Game.spawns.Spawn1.room.name,"W6N8"];
   }
-  var tmp = Game.spawns.Spawn1.room.controller.pos.findClosestByPath(FIND_STRUCTURES, {filter: function(x){return x.structureType== STRUCTURE_CONTAINER && _.sum(x.store) > 0}});
+  var tmp = Game.spawns.Spawn1.room.controller.pos.findClosestByPath(FIND_STRUCTURES, {filter: function(x){return x.structureType== STRUCTURE_CONTAINER}});
 
   if(tmp) Game.spawns.Spawn1.memory.targetstorage = tmp.id;
 //  console.log("udpated");

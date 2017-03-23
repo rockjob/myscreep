@@ -1,7 +1,7 @@
 /*
 
 High priority
--Create remote miner role. memory object with a room.
+-DONE: Create remote miner role. memory object with a room.
   -Do the same for transport role too.
 -Create order of spawning to maximize economy set speed
 
