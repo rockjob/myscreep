@@ -13,8 +13,8 @@ module.exports = {
 			if(creep.room.name == creep.memory.targetMap){
 
 				var sources = creep.room.find(FIND_SOURCES);
-				if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-					creep.moveTo(sources[0]);
+				if(creep.harvest(creep.pos.findClosestByPath(sources)) == ERR_NOT_IN_RANGE) {
+					creep.moveTo(creep.pos.findClosestByPath(sources));
 				}
 			} else {
 
@@ -51,6 +51,8 @@ function initialise(creep){
 
 creep.memory.role = "RH";
 creep.memory.originalrole = "RH";
-creep.memory.targetMap = "W7N7";
+//console.log(Memory.roomList);
+creep.memory.targetMap = Memory.roomList[1];
+creep.memory.homeMap = Memory.roomList[0];
 creep.memory.init = "T";
 }
