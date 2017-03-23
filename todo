@@ -1,6 +1,11 @@
 /*
 
+High priority
+-Create remote miner role. memory object with a room.
+  -Do the same for transport role too.
 -Create order of spawning to maximize economy set speed
+
+Low priority
 -Create dynamic spawner based that sees how much energy is avaliable.
 -Minimise use of "find" methods: Store targets in creep memory
 

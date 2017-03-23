@@ -21,11 +21,12 @@ run: function(creep){
       creep.memory.originalrole = creep.memory.role;
       creep.memory.role = "B";
     }*/
-    dropOffResource(creep,myTargetStorage);
+    dropOffResource(creep);
+
 
  }else{
 
-    myTargetStorage =Game.getObjectById(Game.spawns.Spawn1.memory.targetstorage);
+    myTargetStorage =Game.spawns.Spawn1.memory.targetstorage;
      //var target = creep.room.find(FIND_SOURCES);
      //var target = creep.pos.findClosestByPath(FIND_DROPPED_ENERGY);
      var target = creep.pos.findClosestByPath(_.filter(Game.spawns.Spawn1.room.find(FIND_STRUCTURES),function(x){return x.structureType == STRUCTURE_CONTAINER && _.sum(x.store) > 0 && x.id != myTargetStorage} ));
@@ -40,8 +41,8 @@ run: function(creep){
 }
 
 };
-function dropOffResource(creep,myTargetStorage){
-
+function dropOffResource(creep){
+myTargetStorage =Game.spawns.Spawn1.memory.targetstorage;
   if(_.sum(Game.getObjectById(myTargetStorage).store) < Game.getObjectById(myTargetStorage).storeCapacity){
     if(creep.transfer(Game.getObjectById(myTargetStorage), RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
         creep.moveTo(Game.getObjectById(myTargetStorage));
