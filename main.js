@@ -14,20 +14,21 @@ var moveScripts = require('moveScripts');
 var loopcount=0;
 var roomList = [Game.spawns.Spawn1.room.name,null];
 
-
 module.exports.loop = function () {
-loopcount++;
-//console.log(loopcount);
-if(loopcount%10 == 0){
-  if(!Memory.roomList){
-    Memory.roomList = roomList;
-  }
-  var tmp = Game.spawns.Spawn1.room.controller.pos.findClosestByPath(FIND_STRUCTURES, {filter: function(x){return x.structureType== STRUCTURE_CONTAINER}});
+  loopcount++;
+  //console.log(loopcount);
+  if(loopcount%10 == 0){
+    if(!Memory.roomList){
+      Memory.roomList = roomList;
+    }
+    var tmp = Game.spawns.Spawn1.room.controller.pos.findClosestByPath(FIND_STRUCTURES, {filter: function(x){return x.structureType== STRUCTURE_CONTAINER}});
 
-  if(tmp) Game.spawns.Spawn1.memory.targetstorage = tmp.id;
-  //console.log("udpated");
-  loopcount=0;
-}
+    if(tmp) Game.spawns.Spawn1.memory.targetstorage = tmp.id;
+
+    if(!Memory.creepConfiguration) creepConfiguration();
+    //console.log("udpated");
+    loopcount=0;
+  }
   //console.log("loop");
   //spawnerScript.run([MOVE,WORK,WORK,WORK,WORK,WORK,WORK,WORK],{ originalrole: "SM", role:"SM"} );
   if(Game.spawns.Spawn1.memory.targetstorage == undefined){
@@ -75,4 +76,30 @@ if(loopcount%10 == 0){
   //}
 
 
+} // End of main loop
+
+function creepConfiguration(){
+  //Memory.creepConfiguration = null;
+  var creepConfiguration = [];// = Memory.creepConfiguration;
+  creepConfiguration[0] = [];
+  creepConfiguration[1] = [];
+
+  creepConfiguration[0][0]=['H',4,[WORK,CARRY,MOVE],3];
+  creepConfiguration[0][1]=['EF',1,[CARRY,WORK,MOVE],3];
+  creepConfiguration[0][2]=['T',3,[MOVE,CARRY,CARRY,MOVE,CARRY,CARRY,MOVE,CARRY,CARRY],3];
+  creepConfiguration[0][3]=['SM',3,[MOVE,WORK,WORK,WORK,WORK,WORK,WORK,WORK],3];
+  creepConfiguration[0][4]=['TS',3,[MOVE,CARRY,CARRY,MOVE,CARRY,CARRY,MOVE,CARRY,CARRY],3];
+  creepConfiguration[0][5]=['U',0,[CARRY,WORK,MOVE,MOVE],3];
+  creepConfiguration[0][6]=['B',2,[CARRY,WORK,MOVE],3];
+  creepConfiguration[0][7]=['RE',1,[CARRY,WORK,MOVE],3];
+  creepConfiguration[0][8]=['RH',0,[CARRY,CARRY,WORK,WORK,MOVE,MOVE],3];
+
+  //creepConfiguration[1][0]=['SM',2];
+  //creepConfiguration[1][1]=['T',5];
+
+
+
+  //creepConfiguration[0]['H']=[4]
+  //console.log(creepConfiguration[0]['H']);
+  Memory.creepConfiguration = creepConfiguration;
 }

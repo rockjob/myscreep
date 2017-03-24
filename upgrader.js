@@ -9,6 +9,7 @@
 var creep;
 module.exports = {
   run: function(creep){
+
     //creep.memory.role = "R";
     //console.log(creep.room.controller);
 
@@ -32,9 +33,10 @@ module.exports = {
           updateTarget(creep);
         } else if((Game.getObjectById(creep.memory.target).store[RESOURCE_ENERGY] < creep.carryCapacity) || (Game.spawns.Spawn1.memory.targetstorage != creep.memory.target)){
           updateTarget(creep);
+          creep.moveTo(creep.room.controller);
         } else if(creep.withdraw(Game.getObjectById(creep.memory.target), RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
           creep.moveTo(Game.getObjectById(creep.memory.target));
-        }
+        } 
       }else {
         updateTarget(creep);
 

@@ -9,7 +9,7 @@
 var creep;
 module.exports = {
   run: function(creep){
-
+//console.log("H task");
     if(creep.carry.energy == creep.carryCapacity){
       // console.log(creep.transfer(Game.spawns.Spawn1, RESOURCE_ENERGY));
       if(creep.transfer(Game.spawns.Spawn1, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
@@ -26,6 +26,7 @@ module.exports = {
       }
     } else {
       //creep.moveTo(Game.spawns.Spawn1);
+
       creep.moveTo(Game.flags.Flag1);
     }
 

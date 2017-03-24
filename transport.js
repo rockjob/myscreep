@@ -48,19 +48,19 @@ function dropOffResource(creep){
     //console.log(creep.transfer(_.filter(Game.spawns.Spawn1.room.find(FIND_STRUCTURES),function(x){return x.structureType= "STRUCTURE_CONTAINER" && _.sum(x.store) < x.storeCapacity} ), RESOURCE_ENERGY))
     if(!creep.memory.dropOffTarget){
       updateDropOffTarget(creep);
-      console.log("T Target changed: undefined");
+    //  console.log("T Target changed: undefined");
     } else if(!Game.getObjectById(creep.memory.dropOffTarget)){
-      console.log("T Target changed: Target no longer exists");
+    //  console.log("T Target changed: Target no longer exists");
       updateDropOffTarget(creep);
     }
     if(Game.getObjectById(creep.memory.dropOffTarget).structureType == STRUCTURE_CONTAINER){
     if( _.sum(Game.getObjectById(creep.memory.dropOffTarget).store) == Game.getObjectById(creep.memory.dropOffTarget).storeCapacity){
-      console.log("its full");
+    //  console.log("its full");
       updateDropOffTarget(creep);
     }
   } else {
     if( Game.getObjectById(creep.memory.dropOffTarget).energy == Game.getObjectById(creep.memory.dropOffTarget).energyCapacity){
-      console.log("its full");
+    //  console.log("its full");
       updateDropOffTarget(creep);
     }
   }
