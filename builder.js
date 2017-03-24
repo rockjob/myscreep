@@ -31,11 +31,11 @@ module.exports = {
           }
         }else {
           //go for spawn energy
-          if(Game.spawns.Spawn1.energy == Game.spawns.Spawn1.energyCapacity){
+        /*  if(Game.spawns.Spawn1.energy == Game.spawns.Spawn1.energyCapacity){
           if(creep.withdraw(Game.spawns.Spawn1, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
           creep.moveTo(Game.spawns.Spawn1);
         }
-      }
+      }*/
     }
   } else {
     creep.memory.role = creep.memory.originalrole;

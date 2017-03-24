@@ -13,7 +13,7 @@ module.exports = {
     if(creep.carry.energy > 0){
 
       var target = creep.pos.findClosestByPath(_.filter(Game.spawns.Spawn1.room.find(FIND_MY_STRUCTURES),function(x){return ((x.structureType== STRUCTURE_EXTENSION ) && x.energy < x.energyCapacity)} ));
-      //console.log(creep.transfer(_.filter(Game.spawns.Spawn1.room.find(FIND_MY_STRUCTURES),function(x){return x.structureType= "STRUCTURE_EXTENSION" && x.energy < x.energyCapacity} ), RESOURCE_ENERGY));
+      //console.log(target);
       if(target){
         if(creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
           creep.moveTo(target);
