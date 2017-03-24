@@ -52,8 +52,7 @@ function dropOffResource(creep){
     } else if(!Game.getObjectById(creep.memory.dropOffTarget)){
     //  console.log("T Target changed: Target no longer exists");
       updateDropOffTarget(creep);
-    }
-    if(Game.getObjectById(creep.memory.dropOffTarget).structureType == STRUCTURE_CONTAINER){
+    } else if(Game.getObjectById(creep.memory.dropOffTarget).structureType == STRUCTURE_CONTAINER){
     if( _.sum(Game.getObjectById(creep.memory.dropOffTarget).store) == Game.getObjectById(creep.memory.dropOffTarget).storeCapacity){
     //  console.log("its full");
       updateDropOffTarget(creep);
@@ -82,5 +81,6 @@ function dropOffResource(creep){
 }
 
 function updateDropOffTarget(creep){
-  creep.memory.dropOffTarget = creep.pos.findClosestByPath(_.filter(Game.spawns.Spawn1.room.find(FIND_STRUCTURES),function(x){return (x.structureType == STRUCTURE_EXTENSION && x.energy < x.energyCapacity) || (x.structureType == STRUCTURE_CONTAINER && _.sum(x.store) < x.storeCapacity) } )).id;
+  var newtarget = creep.pos.findClosestByPath(_.filter(Game.spawns.Spawn1.room.find(FIND_STRUCTURES),function(x){return (x.structureType == STRUCTURE_EXTENSION && x.energy < x.energyCapacity) || (x.structureType == STRUCTURE_CONTAINER && _.sum(x.store) < x.storeCapacity) } ));
+  if(newtarget) creep.memory.dropOffTarget = newtarget.id;
 }

@@ -44,9 +44,9 @@ function buildCreep(body,data,minBodyPieces){
 function spawnRoom(room){
 	//if(Game.spawns.Spawn1.energy < Game.spawns.Spawn1.energyCapacity) return 0;
 	//console.log("spawn room run");
-	if(_.size(Game.creeps) < 25 ){
+	if(_.size(Game.creeps) < 100 ){
 		for(var x in Memory.creepConfiguration[room]){
-			//console.log("Count of " + Memory.creepConfiguration[room][x][0] +" "+ _.size(_.filter(Game.creeps, function(creep){return creep.memory.originalrole == Memory.creepConfiguration[room][x][0]})))
+			//console.log("Count of " + Memory.creepConfiguration[room][x][0] +" "+ _.size(_.filter(Game.creeps, function(creep){return creep.memory.originalrole == Memory.creepConfiguration[room][x][0]})) + " " +  Memory.creepConfiguration[room][x][1]);
 			if(_.size(_.filter(Game.creeps, function(creep){return creep.memory.originalrole == Memory.creepConfiguration[room][x][0]})) < Memory.creepConfiguration[room][x][1]){
 
 				var result = buildCreep(Memory.creepConfiguration[room][x][2],{ originalrole: Memory.creepConfiguration[room][x][0], role:Memory.creepConfiguration[room][x][0], homeRoom: Memory.roomList[room]}, Memory.creepConfiguration[room][x][3]);
