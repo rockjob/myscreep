@@ -6,6 +6,7 @@
 * var mod = require('harvester');
 * mod.thing == 'a thing'; // true
 */
+var moveScripts = require('moveScripts');
 var creep;
 module.exports = {
   run: function(creep){
@@ -34,7 +35,8 @@ module.exports = {
   //console.log(_.filter(creep.pos.findInRange(FIND_DROPPED_ENERGY,100), function(drop){return drop.energy > 50})[0]);
   //console.log(creep.moveTo(Game.getObjectById(creep.memory.target)));
   if (creep.pickup( Game.getObjectById(creep.memory.target)) == ERR_NOT_IN_RANGE){
-    creep.moveTo(Game.getObjectById(creep.memory.target));
+    //creep.moveTo(Game.getObjectById(creep.memory.target));
+    moveScripts.smartMoveTo(creep,Game.getObjectById(creep.memory.target));
   }
 }
 
@@ -66,15 +68,18 @@ function dropOffResource(creep){
 
 
     if(creep.transfer(Game.getObjectById(creep.memory.dropOffTarget), RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
-      creep.moveTo(Game.getObjectById(creep.memory.dropOffTarget));
+      //creep.moveTo(Game.getObjectById(creep.memory.dropOffTarget));
+      moveScripts.smartMoveTo(creep,Game.getObjectById(creep.memory.dropOffTarget));
     } else {
-      creep.moveTo(Game.spawns.Spawn1);
+      //creep.moveTo(Game.spawns.Spawn1);
+      moveScripts.smartMoveTo(creep,Game.spawns.Spawn1);
     }
 
   } else { // Spawn not full
 
     if(creep.transfer(Game.spawns.Spawn1, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
-      creep.moveTo(Game.spawns.Spawn1);
+      moveScripts.smartMoveTo(creep,Game.spawns.Spawn1);
+      //creep.moveTo(Game.spawns.Spawn1);
     }
 
   }

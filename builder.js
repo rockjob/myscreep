@@ -28,7 +28,7 @@ module.exports = {
         if(target != undefined){
           if(creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
             creep.moveTo(target);
-          }
+          } 
         }else {
           //go for spawn energy
         /*  if(Game.spawns.Spawn1.energy == Game.spawns.Spawn1.energyCapacity){

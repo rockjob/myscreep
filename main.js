@@ -91,9 +91,9 @@ function creepConfiguration(){
   creepConfiguration[0][3]=['SM',3,[MOVE,WORK,WORK,WORK,WORK,WORK,WORK,WORK],3];
   creepConfiguration[0][4]=['TS',3,[MOVE,CARRY,CARRY,MOVE,CARRY,CARRY,MOVE,CARRY,CARRY],3];
   creepConfiguration[0][5]=['U',10,[CARRY,WORK,MOVE,MOVE],3];
-  creepConfiguration[0][6]=['B',5,[CARRY,WORK,MOVE],3];
+  creepConfiguration[0][6]=['B',3,[CARRY,WORK,MOVE],3];
   creepConfiguration[0][7]=['RE',1,[CARRY,WORK,MOVE],3];
-  creepConfiguration[0][8]=['RH',10,[CARRY,CARRY,WORK,WORK,MOVE,MOVE],3];
+  creepConfiguration[0][8]=['RH',3,[CARRY,MOVE,WORK,MOVE,CARRY,WORK],3];
 
   //creepConfiguration[1][0]=['SM',2];
   //creepConfiguration[1][1]=['T',5];

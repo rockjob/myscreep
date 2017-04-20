@@ -6,6 +6,8 @@
 * var mod = require('harvester');
 * mod.thing == 'a thing'; // true
 */
+
+var moveScripts = require('moveScripts');
 var creep;
 module.exports = {
   run: function(creep){
@@ -19,7 +21,8 @@ module.exports = {
       //console.log(creep.upgradeController(creep.room.contoller));
       if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE){
 
-        creep.moveTo(creep.room.controller);
+        //creep.moveTo(creep.room.controller);
+        moveScripts.smartMoveTo(creep,creep.room.controller);
       }
 
     }else{
@@ -33,10 +36,12 @@ module.exports = {
           updateTarget(creep);
         } else if((Game.getObjectById(creep.memory.target).store[RESOURCE_ENERGY] < creep.carryCapacity) || (Game.spawns.Spawn1.memory.targetstorage != creep.memory.target)){
           updateTarget(creep);
-          creep.moveTo(creep.room.controller);
+          //creep.moveTo(creep.room.controller);
+            moveScripts.smartMoveTo(creep,creep.room.controller);
         } else if(creep.withdraw(Game.getObjectById(creep.memory.target), RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
-          creep.moveTo(Game.getObjectById(creep.memory.target));
-        } 
+          //creep.moveTo(Game.getObjectById(creep.memory.target));
+          moveScripts.smartMoveTo(creep,Game.getObjectById(creep.memory.target));
+        }
       }else {
         updateTarget(creep);
 
@@ -47,7 +52,8 @@ module.exports = {
         }          else {
           creep.moveTo(Game.flags.Flag1);
         }`
-        creep.moveTo(Game.flags.Flag1);
+        //creep.moveTo(Game.flags.Flag1);
+        moveScripts.smartMoveTo(creep,Game.flags.Flag1);
       }
 
 
