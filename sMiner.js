@@ -12,7 +12,7 @@ module.exports = {
 
 
 
-    if(!creep.memory.targetMap) creep.memory.targetMap = creep.room.name;
+
 
     if(creep.room.name == creep.memory.targetMap){
 
@@ -42,4 +42,5 @@ function initialise(creep){
 	creep.memory.targetMap = Memory.roomList[1];
 	creep.memory.homeMap = Memory.roomList[0];
 	creep.memory.init = "T";
+  if(!creep.memory.targetMap) creep.memory.targetMap = creep.room.name;
 }

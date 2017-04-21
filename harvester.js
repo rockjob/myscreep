@@ -26,8 +26,7 @@ module.exports = {
       }
     } else {
       //creep.moveTo(Game.spawns.Spawn1);
-
-      creep.moveTo(Game.flags.Flag1);
+      if(!creep.pos.isNearTo(Game.flags.Flag1))      creep.moveTo(Game.flags.Flag1);
     }
 
   }
